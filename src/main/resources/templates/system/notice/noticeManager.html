@@ -53,8 +53,12 @@
 </div>
 <!--操作-->
 <div type="text/html" id="noticeTableRowBar" style="display: none;">
-    <a class="layui-btn layui-btn-xs" lay-event="update"><span class="layui-icon">&#xe642;</span>编辑</a>
-    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del"><span class="layui-icon">&#xe640;</span>删除</a>
+    <shiro:hasRole name="超级管理员">
+        <a class="layui-btn layui-btn-xs" lay-event="update"><span class="layui-icon">&#xe642;</span>编辑</a>
+    </shiro:hasRole>
+    <shiro:hasRole name="超级管理员">
+        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del"><span class="layui-icon">&#xe640;</span>删除</a>
+    </shiro:hasRole>
     <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="view"><span class="layui-icon">&#xe60b;</span>查看</a>
 </div>
 
@@ -127,14 +131,14 @@
             , defaultToolbar: ['filter', 'print']
             , title: '公告数据表'
             , height: 'full-150'
-            , cols: [[
+            , cols: [ [
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'id', title: 'ID', align: 'center', fixed: 'left', unresize: true, sort: true}
                 , {field: 'title', title: '公告标题', align: 'center'}
                 , {field: 'createtime', title: '发布时间', align: 'center'}
                 , {field: 'opername', title: '发布人', align: 'center'}
                 , {fixed: 'right', title: '操作', toolbar: '#noticeTableRowBar', align: 'center'}
-            ]]
+            ] ]
             , page: true
         });
         //模糊查询
