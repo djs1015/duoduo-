@@ -16,7 +16,25 @@ public class DeptServiceImpl implements DeptService {
 
     //查询部门
     public List<Dept> loadAllDept(@Param("dept") Dept dept) {
+        System.out.println(123);
         return deptMapper.loadAllDept(dept);
+    }
+
+    @Override
+    public List<Dept> loadAllDeptTreeJson(Dept dept) {
+        return deptMapper.loadAllDeptTreeJson(dept);
+    }
+
+    //添加部门
+    @Override
+    public int addDept(Dept dept) {
+        return deptMapper.addDept(dept);
+    }
+
+    //最大排序吗
+    @Override
+    public Integer loadDeptMaxOrderNum() {
+        return deptMapper.loadDeptMaxOrderNum();
     }
 
 

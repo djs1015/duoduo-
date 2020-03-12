@@ -10,10 +10,24 @@
                 <if test="dept.title != null and dept.title != '' ">
                     and title like '%${dept.title}%'
                 </if>
-                <!--<if test="notice != null">
-                    and id = #{notice.id}
-                </if>-->
             </if>
         </where>
     </select>
+
+    <!--生成树-->
+    <select id="loadAllDeptTreeJson" resultType="com.dt87.entity.Dept">
+        select * from sys_dept where available=1
+    </select>
+
+    <!--添加部门-->
+    <insert id="addDept" parameterType="com.dt87.entity.Dept">
+        insert into sys_dept (title,open,remark,address,available,ordernum,createtime) value
+        (#{dept.title},#{dept.open},#{dept.remark},#{dept.address},#{dept.available},#{dept.ordernum},#{dept.createtime})
+    </insert>
+
+    <!--加载最大排序码-->
+    <select id="loadDeptMaxOrderNum" resultType="Integer">
+        SELECT MAX(ordernum) FROM sys_dept
+    </select>
+
 </mapper>

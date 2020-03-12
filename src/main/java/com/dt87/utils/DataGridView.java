@@ -1,11 +1,19 @@
 package com.dt87.utils;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * layui数据表格的格式对象
  *
  * @author LJH
  */
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class DataGridView {
 

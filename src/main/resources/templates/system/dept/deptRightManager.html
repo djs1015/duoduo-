@@ -53,7 +53,7 @@
 </div>
 <!--操作-->
 <div type="text/html" id="deptTableRowBar" style="display: none;"><!--shiro:hasPermission="dept:update"-->
-    <a class="layui-btn layui-btn-xs" lay-event="update"><span class="layui-icon">&#xe642;</span>编辑</a>
+    <shiro:hasRole name="超级管理员"><a class="layui-btn layui-btn-xs" lay-event="update"><span class="layui-icon">&#xe642;</span>编辑</a></shiro:hasRole>
     <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del"><span class="layui-icon">&#xe640;</span>删除</a>
 </div><!--shiro:hasPermission="dept:delete"-->
 
@@ -253,7 +253,7 @@
             var params = $("#dataFrm").serialize();
             //提交 数据
             $.post(url, params, function (obj) {
-                if (obj.code == 200) {
+                if (obj.code == 0) {
                     tableIns.reload();//重载表格
                     //刷新左边的树
                     window.parent.left.leftDeptTree.reload();
@@ -292,7 +292,7 @@
                         layer.close(index);
                         //向服务端发送删除指令
                         $.post("/dept/deleteDept", {id: data.id}, function (obj) {
-                            if (obj.code == 200) {
+                            if (obj.code == 0) {
                                 tableIns.reload();//重载表格
                                 //刷新左边的树
                                 window.parent.left.leftDeptTree.reload();

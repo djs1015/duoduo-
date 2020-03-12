@@ -9,4 +9,14 @@ public interface PermissionService {
     public List<Permission> findByPid(int pid);
 
     public List<Permission> loadMenu();
+
+    public List<Permission> loadAllMenuTreeJson(Permission permission);
+
+    public List<Permission> loadAllPermission(Permission permission);
+
+    public int addPermission(Permission permission);
+
+    public int loadPermissionMaxOrderNum();
+
+    public Integer deletePermission(Integer id);
 }

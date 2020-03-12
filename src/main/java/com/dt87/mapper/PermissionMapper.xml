@@ -10,4 +10,40 @@
     <select id="loadMenu" resultType="com.dt87.entity.Permission">
         select * from sys_permission where type='menu' and available=1
     </select>
+
+    <!--查看所有权限（并生成树）-->
+    <select id="loadAllMenuTreeJson" resultType="com.dt87.entity.Permission">
+        select * from sys_permission where type='menu' and available=1
+    </select>
+
+    <!--查看所有权限内容-->
+    <select id="loadAllPermission" resultType="com.dt87.entity.Permission">
+        select * from sys_permission
+        <where>
+            <if test="permission != null">
+                <if test="permission.type != null">
+                    and type = "permission"
+                </if>
+                <if test="permission.title != null and permission.title != '' ">
+                    and title like '%${permission.title}%'
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <!--添加权限-->
+    <insert id="addPermission" parameterType="com.dt87.entity.Permission">
+        insert into sys_permission (pid,title,percode,ordernum,available)
+        value (#{permission.pid},#{permission.title},#{permission.percode},#{permission.ordernum},#{permission.available})
+    </insert>
+
+    <!--加载最大排序码-->
+    <select id="loadPermissionMaxOrderNum" resultType="Integer">
+        SELECT MAX(ordernum) FROM sys_permission
+    </select>
+
+    <!--删除一条数据-->
+    <delete id="deletePermission" parameterType="com.dt87.entity.Permission">
+        delete from sys_permission where id = #{id}
+    </delete>
 </mapper>

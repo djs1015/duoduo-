@@ -23,4 +23,35 @@ public class PermissionServiceImpl implements PermissionService {
     public List<Permission> loadMenu() {
         return permissionMapper.loadMenu();
     }
+
+    //查看所有权限（并生成树）
+    @Override
+    public List<Permission> loadAllMenuTreeJson(Permission permission){
+        return permissionMapper.loadAllMenuTreeJson(permission);
+    }
+
+    //查询所有权限内容
+    @Override
+    public List<Permission> loadAllPermission(Permission permission) {
+
+        return permissionMapper.loadAllPermission(permission);
+    }
+
+    //添加权限
+    @Override
+    public int addPermission(Permission permission) {
+        return permissionMapper.addPermission(permission);
+    }
+
+    @Override
+    public int loadPermissionMaxOrderNum() {
+        return permissionMapper.loadPermissionMaxOrderNum();
+    }
+
+    @Override
+    public Integer deletePermission(Integer id) {
+        return permissionMapper.deletePermission(id);
+    }
+
+
 }
