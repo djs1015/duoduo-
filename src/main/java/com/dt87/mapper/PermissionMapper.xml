@@ -46,4 +46,10 @@
     <delete id="deletePermission" parameterType="com.dt87.entity.Permission">
         delete from sys_permission where id = #{id}
     </delete>
+
+    <!--查询权限所有列表-->
+    <select id="loadRolePermission" resultType="com.dt87.entity.Permission">
+        /*SELECT title FROM sys_permission WHERE available=1*/
+        SELECT * FROM sys_permission WHERE TYPE='menu' UNION SELECT * FROM sys_permission WHERE TYPE='permission'
+    </select>
 </mapper>

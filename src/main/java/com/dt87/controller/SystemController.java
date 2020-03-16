@@ -62,5 +62,10 @@ public class SystemController {
         return "system/permission/permissionRightManager";
     }
 
+    //角色管理
+    @RequestMapping("/toRoleManager")
+    public String toRoleManager(){
+        return "/system/role/roleManager";
+    }
 
 }

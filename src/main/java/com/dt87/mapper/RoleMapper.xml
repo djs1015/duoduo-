@@ -7,4 +7,42 @@
         select * from sys_role_user ru left join sys_role r on ru.rid=r.id
         where r.id=#{rid}
     </select>
+
+    <!--查询所用用户角色-->
+    <select id="loadAllRole" resultType="com.dt87.entity.Role">
+        select * from sys_role
+        <where>
+            <if test="role.name != null">
+                <if test="role.name != null and role.name != '' ">
+                    and name like '%${role.name}%'
+                </if>
+                <if test="role.remark != null and role.remark != '' ">
+                    and remark like '%${role.remark}%'
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <!--添加角色-->
+    <insert id="addRole" parameterType="com.dt87.entity.Role">
+        insert into sys_role (name,remark,available,createtime)
+        value (#{role.name},#{role.remark},#{role.available},#{role.createtime})
+    </insert>
+    <!--修改角色-->
+    <update id="updateRole" parameterType="com.dt87.entity.Role">
+        update sys_role set name = #{role.name},remark=#{role.remark},available=#{role.available},createtime=#{role.createtime}
+        where id=#{role.id}
+    </update>
+    <!--批量删除-->
+    <delete id="batchDeleteRole" parameterType="List">
+        delete from sys_role where id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--分配权限给角色-->
+    <insert id="saveRolePermission" parameterType="com.dt87.entity.Role">
+        insert into sys_role_permission (rid,pid) value (#{role.rid},#{role.pid})
+    </insert>
 </mapper>

@@ -53,5 +53,15 @@ public class PermissionServiceImpl implements PermissionService {
         return permissionMapper.deletePermission(id);
     }
 
+    /**
+     * 查询所有权限列表
+     * @param permission
+     * @return
+     */
+    @Override
+    public List<Permission> loadRolePermission(Permission permission) {
+        return permissionMapper.loadRolePermission(permission);
+    }
+
 
 }

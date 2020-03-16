@@ -30,4 +30,7 @@ public interface PermissionMapper {
 
     //删除一条数据
     public Integer deletePermission(@Param("id") Integer id);
+
+    //查询所有权限列表
+    public List<Permission> loadRolePermission(@Param("permission") Permission permission);
 }

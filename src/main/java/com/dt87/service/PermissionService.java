@@ -19,4 +19,6 @@ public interface PermissionService {
     public int loadPermissionMaxOrderNum();
 
     public Integer deletePermission(Integer id);
+
+    public List<Permission> loadRolePermission(Permission permission);
 }
